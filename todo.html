@@ -17,10 +17,10 @@
         </ul>
         <button >clear all</button>
         <script>
-       var  form = document.querySelector('form');
-       var  input = document.getElementById('user-todo');
-       var  button = document.querySelector('button');
-       var todolist = document.querySelector('ul');
+        var  form = document.querySelector('form');
+        var  input = document.getElementById('user-todo');
+        var  button = document.querySelector('button');
+        var todolist = document.querySelector('ul');
         var todoArray = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];
         localStorage.setItem('todos' , JSON.stringify(todoArray));
         var storage = JSON.parse(localStorage.getItem ('todos'));
@@ -31,19 +31,17 @@
             todoMaker(input.value);
             input.value = "";
         });
-
-        var todoMaker = function(text){
+           var todoMaker = function(text) {
             var todo = document.createElement('li');
             todo.textContent=text;
             todolist.appendChild(todo);
+            }
 
+        for (var i=0;i<storage.length;i++) {
+            todoMaker(storage[i]);
         }
 
-        for(var i=0;i<storage.length;i++){
-            todoMaker(storage[i]);s
-        }
-
-        button.addEventListener('click' ,function(){
+        button.addEventListener('click' ,function() {
             localStorage.clear();
             while(todolist.firstChild){
                 todolist.removeChild(todolist.firstChild);
